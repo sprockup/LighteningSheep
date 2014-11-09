@@ -6,7 +6,7 @@ public class MainMenu : MonoBehaviour {
 	public GUISkin skin;
 
 	// Use this for GUI elements
-	void OnGUI()
+	/*void OnGUI()
 	{
 		// Apply skin
 		GUI.skin = skin;
@@ -30,5 +30,17 @@ public class MainMenu : MonoBehaviour {
 			// Quit Clicked
 			Application.Quit();
 		}
+	}*/
+	
+	void OnStartButtonClick()
+	{
+		// Play Clicked
+		Application.LoadLevel(1);
+	}
+	
+	void OnQuitButtonClick()
+	{
+		// Quit Clicked
+		Application.Quit();
 	}
 }
