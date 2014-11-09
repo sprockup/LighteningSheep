@@ -1,4 +1,0 @@
-LighteningSheep
-===============
-
-LighteningSheep
