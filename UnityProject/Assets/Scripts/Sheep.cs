@@ -26,6 +26,7 @@ public class Sheep : MonoBehaviour {
 	
 	public GameObject HUDTextPrefab;
 	HUDText mText = null;
+	private GameObject hudChild;
 	
 	// Use this for initialization
 	void Start () 
@@ -59,22 +60,22 @@ public class Sheep : MonoBehaviour {
 			return;
 		}
 		
-		GameObject child = NGUITools.AddChild(HUDRoot.go, HUDTextPrefab);
-		mText = child.GetComponentInChildren<HUDText>();
+		GameObject hudChild = NGUITools.AddChild(HUDRoot.go, HUDTextPrefab);
+		mText = hudChild.GetComponentInChildren<HUDText>();
 		
 		// Make the UI follow the target
-		child.AddComponent<UIFollowTarget>().target = transform;
+		hudChild.AddComponent<UIFollowTarget>().target = transform;
 	}
 	
 	IEnumerator PickNewPosition()
 	{
 		// Select random time
 		float time = Random.Range(0.5f, 5f);
+		
 		// Wait for that amount of time
 		yield return new WaitForSeconds(time);
+		
 		// Get a new position to move to
-		// Before IF 
-		// 	SelectNextPosition ();
 		nextPosition = behavior.GetNextPosition();
 		transform.LookAt(nextPosition);
 		
@@ -94,6 +95,18 @@ public class Sheep : MonoBehaviour {
 				Vector3.MoveTowards(transform.position, 
 					nextPosition, 
 					moveSpeed * Time.deltaTime);
+		}
+	}
+
+	void LateUpdate()
+	{
+		if (!isAlive)
+		{
+			// Remove sheep
+			//Destroy(HUDTextPrefab, 0f);
+			//hudChild.
+			//NGUITools.Destroy(hudChild);
+			Destroy(gameObject, 0f);
 		}
 	}
 
@@ -219,9 +232,6 @@ public class Sheep : MonoBehaviour {
 		
 		// Create the death particles animation at the sheeps last position
 		Instantiate(deathParticles, transform.position, Quaternion.identity);
-		
-		// Remove sheep
-		Destroy(gameObject, 0f);
 	}
 	
 	private void UpdateHealthPoints()

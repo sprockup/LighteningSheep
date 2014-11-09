@@ -15,18 +15,33 @@ public class ChargeManager : MonoBehaviour {
 	public const float CHARGEMULTIPLIER = 0.5f;
 	public const float MAXCHARGE = 500f;
 	
+	// Charge bar
+	private static UISlider slider;
+	private static float maxWidth;
+	
+	void Awake()
+	{
+		slider = (UISlider)GameObject.Find("Charge Bar").GetComponent<UISlider>();
+	
+		if (slider == null)
+		{
+			Debug.LogError("No slider found in ChargeManger");
+			return;
+		}
+		
+		maxWidth = slider.foreground.localScale.x;
+	}
+	
+	private static void UpdateChargeBar(float x)
+	{
+		slider.foreground.localScale = 
+			new Vector3(maxWidth * x, 
+				slider.foreground.localScale.y,
+				slider.foreground.localScale.z);
+	}
+	
 	void OnGUI()
 	{
-		// Dynamic width & height based on screen size
-		/*float boxHeight, boxWidth;
-		boxWidth = Screen.width * .95f;
-		boxHeight = Screen.height * .15f;
-		// Create rect on top of level
-		Rect winScreenRect = new Rect((Screen.width/2) - (boxHeight/2), 
-		                              (Screen.height/2) - (boxHeight/2), 
-		                              boxWidth, boxHeight);
-		GUI.Box(winScreenRect, "Charge");*/
-	
 		GUILayout.Label("Charge = " + currentCharge);
 		GUILayout.Label("State  = " + currentState);
 	}
@@ -43,14 +58,25 @@ public class ChargeManager : MonoBehaviour {
 		// Indicate we are ready for discharge
 		SetState (ChargeState.ReadyToDischarge);
 
+		UpdateChargeBar(currentCharge / MAXCHARGE);
+
 		//Debug.Log ("ChargeManager::AddToCharge(" + amountToAdd + "): " + currentCharge);
 		return currentCharge;
 	}
 
 	public static void SetCharge(float newCharge)
 	{
-		currentCharge = newCharge;
-		//Debug.Log ("ChargeManager::SetCharge = " + currentCharge);
+		if (newCharge <= MAXCHARGE)
+		{
+			currentCharge = newCharge;
+			UpdateChargeBar(currentCharge / MAXCHARGE);
+			
+		}
+		else
+		{
+			Debug.LogError("Attempted to set charge greater than MAXCHARGE");
+			currentCharge = MAXCHARGE;
+		}
 	}
 
 	public static float GetChargeLevel()
