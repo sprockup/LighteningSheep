@@ -49,7 +49,8 @@ public class GameManager : MonoBehaviour {
 		// Count the sheep
 		GameObject[] sheep = GameObject.FindGameObjectsWithTag("Sheep");
 		sheepCount = sheep.GetLength(0);
-		
+		((UILabel)GameObject.Find("Sheep Count Label").GetComponent<UILabel>()).text = sheepCount.ToString();
+		((UILabel)GameObject.Find("Score Label").GetComponent<UILabel>()).text = ScoreManager.GetScore().ToString();
 		
 		if (startTime <= 0 || sheepCount <= 0)
 		{
@@ -66,7 +67,7 @@ public class GameManager : MonoBehaviour {
 	{
 		GUI.skin = skin;
 		GUI.Label(timerRect, currentTime, skin.GetStyle("Timer"));
-		GUI.Label(sheepCountRect, sheepCount.ToString(), skin.GetStyle("SheepCount"));
+		//GUI.Label(sheepCountRect, sheepCount.ToString(), skin.GetStyle("SheepCount"));
 		
 		if (showWinScreen)
 		{

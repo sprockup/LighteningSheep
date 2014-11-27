@@ -184,6 +184,7 @@ public class Sheep : MonoBehaviour {
 		CreateBoltBetweenObjects(cloud[0], this.gameObject);
 		
 		string msg = "Zapped with " + ChargeManager.GetChargeLevel() + "!";
+		ScoreManager.AddToScore(ChargeManager.GetChargeLevel());
 		Debug.Log(msg);
 		
 		// Create the fading message
@@ -201,8 +202,12 @@ public class Sheep : MonoBehaviour {
 		Debug.Log("SecondaryStrike");
 		CreateBoltBetweenObjects(fromSheep.gameObject, this.gameObject);
 		
+		// Reduce the power of the charge for the strike/damage
 		float chargeModifier = -0.5f;
 		ChargeManager.AddToCharge(ChargeManager.GetChargeLevel() * chargeModifier);
+		
+		// Increase the charge for the score though
+		ScoreManager.AddToScore(ChargeManager.GetChargeLevel() * 4.0f);
 		
 		UpdateHealthPoints();
 	}
@@ -238,7 +243,9 @@ public class Sheep : MonoBehaviour {
 	{
 		// Update health points based on chargelevel
 		healthPoints -= (int)ChargeManager.GetChargeLevel();
-		mText.Add(-1f * ChargeManager.GetChargeLevel(), Color.red, 0f);
+		if (mText)
+			mText.Add(-1f * ChargeManager.GetChargeLevel(), Color.red, 0f);
+			
 		// If there is no more health left then kill the sheep
 		// and create the death particles
 		if (healthPoints <= 0)

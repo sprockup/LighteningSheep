@@ -4,24 +4,37 @@ using System.Collections;
 
 public class ScoreManager {
 
-	private int currentScore;
-	private int highScore;
+	private static int currentScore;
+	//private static int highScore;
+
+	private static ScoreManager theScoreManager;
 
 	// Use this for initialization
 	public ScoreManager()
 	{
 		currentScore = 0;
-		highScore = 0;
+		//highScore = 0;
 	}
 
-	int GetScore()
+	/*public ScoreManager GetInstance()
+	{
+		if (null == theScoreManager)
+		{
+			theScoreManager = new ScoreManager();
+		}
+		
+		return theScoreManager;
+		
+	}*/
+
+	public static int GetScore()
 	{
 		return currentScore;
 	}
 	
-	int AddToScore(int amountToAdd)
+	public static int AddToScore(float amountToAdd)
 	{
-		currentScore += amountToAdd;
+		currentScore += (int)amountToAdd;
 		return currentScore;
 	}
 }
