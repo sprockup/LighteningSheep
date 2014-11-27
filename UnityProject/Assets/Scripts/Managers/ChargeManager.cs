@@ -29,22 +29,30 @@ public class ChargeManager : MonoBehaviour {
 			return;
 		}
 		
+		// Commented out after making bar scale w/GUI
 		maxWidth = slider.foreground.localScale.x;
 	}
 	
 	private static void UpdateChargeBar(float x)
 	{
+		//maxWidth = slider.background.localScale.x;
+	
 		slider.foreground.localScale = 
 			new Vector3(maxWidth * x, 
 				slider.foreground.localScale.y,
 				slider.foreground.localScale.z);
 	}
 	
-	void OnGUI()
+	public static void SetNewMaxWidth(float newMaxWidth)
+	{
+		maxWidth = newMaxWidth;
+	}
+	
+	/*void OnGUI()
 	{
 		GUILayout.Label("Charge = " + currentCharge);
 		GUILayout.Label("State  = " + currentState);
-	}
+	}*/
 
 	public static float AddToCharge(float amountToAdd)
 	{
