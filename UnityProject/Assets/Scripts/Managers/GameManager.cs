@@ -21,6 +21,8 @@ public class GameManager : MonoBehaviour {
 	public ScoreManager scoreManager;
 	public GameObject spawnLocation;
 	
+	public GameObject levelCompletePanel;
+	
 	void Start()
 	{
 
@@ -36,6 +38,8 @@ public class GameManager : MonoBehaviour {
 		
 		// Start function to spawn sheep
 		//StartCoroutine(SpawnSheep());
+		
+		levelCompletePanel.SetActive(false);
 	}
 
 	void Update()
@@ -71,6 +75,8 @@ public class GameManager : MonoBehaviour {
 		
 		if (showWinScreen)
 		{
+			levelCompletePanel.SetActive(true);
+		/*
 			// Dynamic width & height based on screen size
 			float boxHeight, boxWidth;
 			boxWidth = Screen.width * .8f;
@@ -85,7 +91,7 @@ public class GameManager : MonoBehaviour {
 			                    winScreenRect.y + winScreenRect.height - 50,
 			                    150, 40), "Continue"))
             {
-            	// Continue clicked
+            	// Quit clicked
 				showWinScreen = false;
 				Application.LoadLevel("main_menu");
             }
@@ -100,9 +106,24 @@ public class GameManager : MonoBehaviour {
 			}
             
             GUI.Label(new Rect(winScreenRect.x + 20, winScreenRect.y + 40, 300, 50), startTime.ToString());
-            
+            */
 		}
 	}
+
+	public void OnContinueButtonClick()
+	{
+		// Quit clicked
+		showWinScreen = false;
+		Application.LoadLevel("main_menu");
+	}
+	
+	public void OnQuitButtonClick()
+	{
+		// Quit clicked
+		showWinScreen = false;
+		Application.LoadLevel("main_menu");
+	}
+	
 
 	public void CompleteLevel()
 	{
