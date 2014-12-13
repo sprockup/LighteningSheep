@@ -8,11 +8,11 @@ public class ChargeManager : MonoBehaviour {
 	//private static float staticDischargeRate = 0.5f;
 	private static float chargeKillLevel = 20.0f;
 	
-	public enum ChargeState {NotReady, ReadyToDischarge};
+	public enum ChargeState {NotReady, Charging, ReadyToDischarge};
 	private static ChargeState currentState;
 
 	// Charge characteristics
-	public const float CHARGEMULTIPLIER = 0.5f;
+	public const float CHARGEMULTIPLIER = 25.0f;
 	public const float MAXCHARGE = 500f;
 	
 	// Charge bar
@@ -64,7 +64,7 @@ public class ChargeManager : MonoBehaviour {
 			currentCharge = MAXCHARGE;
 
 		// Indicate we are ready for discharge
-		SetState (ChargeState.ReadyToDischarge);
+		//SetState (ChargeState.ReadyToDischarge);
 
 		UpdateChargeBar(currentCharge / MAXCHARGE);
 

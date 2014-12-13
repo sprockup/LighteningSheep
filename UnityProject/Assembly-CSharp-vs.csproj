@@ -172,6 +172,8 @@
      <Compile Include="Assets\NGUI\Scripts\UI\UITiledSprite.cs" />
      <Compile Include="Assets\NGUI\Scripts\UI\UITooltip.cs" />
      <Compile Include="Assets\NGUI\Scripts\UI\UIViewport.cs" />
+     <Compile Include="Assets\Scripts\CameraPan.cs" />
+     <Compile Include="Assets\Scripts\CloudTouchInput.cs" />
      <Compile Include="Assets\Scripts\Clould.cs" />
      <Compile Include="Assets\Scripts\Destroy.cs" />
      <Compile Include="Assets\Scripts\FadingMessage.cs" />

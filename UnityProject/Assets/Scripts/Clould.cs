@@ -37,12 +37,14 @@ public class Clould : MonoBehaviour {
 	
 	void OnTouchUp() 
 	{
+		//Debug.Log("Cloud::OnTouchUp");
 		touchState = TouchState.COMPLETED;
 		UpdateCloudColor();
 	}
 	
 	void OnTouchStay(Vector3 currentHit) 
 	{
+		//Debug.Log("Cloud::OnTouchStay");
 		if (touchState == TouchState.WAITING)
 		{
 			// This is the first time through so capture the current point
@@ -50,6 +52,7 @@ public class Clould : MonoBehaviour {
 			lastHit = currentHit;
 			// Update the state to start accumulating charge
 			touchState = TouchState.ACCUMULATING;
+			ChargeManager.SetState(ChargeManager.ChargeState.Charging);
 		}
 		else if (touchState == TouchState.ACCUMULATING)
 		{
@@ -58,6 +61,7 @@ public class Clould : MonoBehaviour {
 			float currCharge = 
 				Vector3.Distance(lastHit, currentHit) * ChargeManager.CHARGEMULTIPLIER;
 			ChargeManager.AddToCharge(currCharge);
+			ChargeManager.SetState(ChargeManager.ChargeState.Charging);
 			// Capture the current point as the last for the next iteration
 			lastHit = currentHit;
 		}
@@ -67,13 +71,15 @@ public class Clould : MonoBehaviour {
 	
 	void OnTouchExit() 
 	{
+		//Debug.Log("Cloud::OnTouchExit");
 		touchState = TouchState.COMPLETED;
+		ChargeManager.SetState(ChargeManager.ChargeState.ReadyToDischarge);
 		UpdateCloudColor();
 	}
 	
 	void UpdateCloudColor()
 	{
-		spotLight.intensity = 
-			Mathf.Lerp (8, 0, ChargeManager.GetChargeLevel() / ChargeManager.MAXCHARGE);
+		//spotLight.intensity = 
+		//	Mathf.Lerp (8, 0, ChargeManager.GetChargeLevel() / ChargeManager.MAXCHARGE);
 	}
 }
