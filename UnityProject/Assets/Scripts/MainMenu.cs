@@ -35,7 +35,7 @@ public class MainMenu : MonoBehaviour {
 	void OnStartButtonClick()
 	{
 		// Play Clicked
-		Application.LoadLevel(1);
+		Application.LoadLevel("level_selector");
 	}
 	
 	void OnQuitButtonClick()

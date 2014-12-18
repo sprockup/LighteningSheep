@@ -3,11 +3,6 @@ using System.Collections;
 
 public class Clould : MonoBehaviour {
 
-	//public Color defaultColor;
-	//public Color selectedColor;
-
-	public Light spotLight;
-
 	//private Material material;
 	private Vector3 lastHit;
 	private enum TouchState {WAITING, ACCUMULATING, COMPLETED};

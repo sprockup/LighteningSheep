@@ -22,11 +22,11 @@ public class CameraPan : MonoBehaviour {
 		}
 		
 		//Cast a ray downward, return distance        
-		RaycastHit hit;
+		/*RaycastHit hit;
 		Debug.DrawRay(transform.position, -Vector3.up);
 		if(Physics.Raycast(transform.position,Vector3.down,out hit))
 		{
 			Debug.Log("Distance to ground is " + hit.distance);
-		}
+		}*/
 	}
 }

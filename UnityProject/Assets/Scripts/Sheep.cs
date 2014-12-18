@@ -7,7 +7,8 @@ public class Sheep : MonoBehaviour {
 	public Color selectedColor;
 	private Material material;
 
-	public float moveSpeed = 20;
+	private const float MAX_MOVE_SPEED = 20f;
+	public float moveSpeed = 20f;
 	
 	private float height = 5;
 	//private float size = 45.0f;
@@ -43,7 +44,7 @@ public class Sheep : MonoBehaviour {
 		transform.position = currentPosition;
 
 		// Pick random speed based on initial moveSpeed
-		moveSpeed = Random.Range(moveSpeed - 8, moveSpeed);
+		moveSpeed = Random.Range((MAX_MOVE_SPEED - 8), MAX_MOVE_SPEED);
 
 		// Now select the first place to move to
 		// Before IF 
@@ -77,6 +78,7 @@ public class Sheep : MonoBehaviour {
 		
 		// Get a new position to move to
 		nextPosition = behavior.GetNextPosition();
+
 		transform.LookAt(nextPosition);
 		
 		// Move if not dead
@@ -95,6 +97,11 @@ public class Sheep : MonoBehaviour {
 				Vector3.MoveTowards(transform.position, 
 					nextPosition, 
 					moveSpeed * Time.deltaTime);
+			// This fix keeps the sheep on the ground for now but will not work with any
+			// elevation to their containing field
+			transform.position = new Vector3(transform.position.x, 0.5f, transform.position.z);
+			
+			//Debug.Log("Update Pos: " + transform.position);
 		}
 	}
 
