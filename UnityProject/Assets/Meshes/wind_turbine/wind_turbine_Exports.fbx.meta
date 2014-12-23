@@ -1,15 +1,40 @@
 fileFormatVersion: 2
-guid: 9d357dd5e68ceb54da07969b1d9f18a5
+guid: 49c1a4041ac713f48a109e59513ed886
 ModelImporter:
   serializedVersion: 16
   fileIDToRecycleName:
-    100000: polySurface23_polySurface22 Always_check_before_a_meeting__1__polySurface1
-    100002: //RootNode
-    400000: polySurface23_polySurface22 Always_check_before_a_meeting__1__polySurface1
-    400002: //RootNode
-    2300000: polySurface23_polySurface22 Always_check_before_a_meeting__1__polySurface1
-    3300000: polySurface23_polySurface22 Always_check_before_a_meeting__1__polySurface1
-    4300000: polySurface23_polySurface22 Always_check_before_a_meeting__1__polySurface1
+    100000: polySurface10
+    100002: polySurface11
+    100004: polySurface12
+    100006: polySurface13
+    100008: polySurface14
+    100010: polySurface9
+    100012: //RootNode
+    400000: polySurface10
+    400002: polySurface11
+    400004: polySurface12
+    400006: polySurface13
+    400008: polySurface14
+    400010: polySurface9
+    400012: //RootNode
+    2300000: polySurface10
+    2300002: polySurface11
+    2300004: polySurface12
+    2300006: polySurface13
+    2300008: polySurface14
+    2300010: polySurface9
+    3300000: polySurface10
+    3300002: polySurface11
+    3300004: polySurface12
+    3300006: polySurface13
+    3300008: polySurface14
+    3300010: polySurface9
+    4300000: polySurface9
+    4300002: polySurface10
+    4300004: polySurface11
+    4300006: polySurface12
+    4300008: polySurface13
+    4300010: polySurface14
     9500000: //RootNode
   materials:
     importMaterials: 1
@@ -62,6 +87,6 @@ ModelImporter:
     feetSpacing: 0
     rootMotionBoneName: 
   lastHumanDescriptionAvatarSource: {instanceID: 0}
-  animationType: 0
+  animationType: 2
   additionalBone: 0
   userData: 
