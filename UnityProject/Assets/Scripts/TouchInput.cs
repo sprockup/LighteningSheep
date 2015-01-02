@@ -38,6 +38,11 @@ public class TouchInput : MonoBehaviour {
 					recipient.SendMessage ("OnTouchStay", hit.point, SendMessageOptions.DontRequireReceiver);
 				}
 			}
+			
+			if (Input.GetMouseButtonUp(0)) {
+				//recipient.SendMessage ("OnTouchUp", null, SendMessageOptions.DontRequireReceiver);
+				ChargeManager.SetState(ChargeManager.ChargeState.NotReady);
+			}
 
 			foreach (GameObject g in touchesOld) {
 				if (!touchList.Contains(g)) {
@@ -76,6 +81,10 @@ public class TouchInput : MonoBehaviour {
 					if (touch.phase == TouchPhase.Canceled) {
 						recipient.SendMessage ("OnTouchExit", hit.point, SendMessageOptions.DontRequireReceiver);
 					}
+				}
+				if (touch.phase == TouchPhase.Ended) {
+					//recipient.SendMessage ("OnTouchUp", null, SendMessageOptions.DontRequireReceiver);
+					ChargeManager.SetState(ChargeManager.ChargeState.NotReady);
 				}
 			}
 			foreach (GameObject g in touchesOld) {
